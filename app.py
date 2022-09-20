@@ -58,13 +58,16 @@ def api_login():
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
+        print(token_receive)
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"id": payload['id']})
-        return render_template('main.html', nickname=user_info["nick"])
+        return render_template("main.html")
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for("index", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
+
+
 
 
 if __name__ == '__main__':

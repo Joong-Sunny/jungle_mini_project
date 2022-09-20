@@ -16,6 +16,10 @@
 
     </style>
     <script>
+        function go_home() {
+            window.location.href = "/"
+        }
+
         function login() {
             firstname = '{{template_first_name}}'
             $.ajax({
@@ -33,12 +37,17 @@
                 }
             })
         }
+
+        function typing() {
+            get_lastname = $('#lastname').val();
+            $('#get_lastname').text(get_lastname)
+        }
     </script>
 </head>
 
 <body>
     <header>
-        <img src="static\logo.png" alt="">
+        <img src="static\logo.png" alt="" onclick="go_home()">
     </header>
     <div>
         <img src="static\big-icon.png" alt="">
@@ -46,8 +55,9 @@
     <main>
         <div>
             <p><label>이름 <span id="firstname">{{template_first_name}}</span></label></p>
-            <p><label for="lastname">성 </label><input id="lastname" type="text"></p>
-            <p>내 동료의 이름은 {{template_first_name}}입니다. <button onclick="login()">확인</button></p>
+            <p><label for="lastname">성 </label><input id="lastname" type="text" oninput="typing()"></p>
+            <p>내 동료의 이름은 <span id="get_lastname"></span>{{template_first_name}}입니다. <button
+                    onclick="login()">확인</button></p>
         </div>
     </main>
 </body>
