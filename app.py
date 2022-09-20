@@ -18,13 +18,11 @@ student_data = {
     2: {"first_name": "중선", "last_name": "윤"}
 }
 
-
 @app.route('/')  
 def index():
     return render_template("index.html",
                            template_first_name=student_data[ran_num]["first_name"],
                            template_last_name=student_data[ran_num]["last_name"])
-
 
 @app.route('/api/login', methods=['POST'])
 def api_login():
@@ -53,7 +51,6 @@ def api_login():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
-
 @app.route('/main')
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -66,9 +63,6 @@ def home():
         return redirect(url_for("index", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
