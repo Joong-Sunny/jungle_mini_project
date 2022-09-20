@@ -19,7 +19,7 @@ student_data = {
 }
 
 
-@app.route('/')
+@app.route('/')  
 def index():
     return render_template("index.html",
         template_first_name = student_data[ran_num]["first_name"],
