@@ -64,5 +64,14 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
 
+#save comments to DB
+@app.route('/api/comments', methods=['POST'])
+def submitComment():
+    comment_receive = request.form['comment_give']
+    store_receive = request.form['store_name']
+    comment_push = {'store_name': store_receive, 'comment':comment_receive}
+    db.comments.insert_one(comment_push)
+    return jsonify({'result': 'success', 'msg': str(comment_push) + "db에 저장되었습니다!"})
+
 if __name__ == '__main__':
     app.run(debug=True)
