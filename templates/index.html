@@ -11,9 +11,104 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
         integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            /* font size */
+            --font-regular: 30px;
+            /* color */
+            --color-background: #ffebee;
+            --color-typing: #616161;
+            --color-button: #4caf50;
+            --color-help:#ff7043;
+            --color-black: #212121;
+        }
 
+        * {
+            font-family: "Nanum Gothic", sans-serif;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        #main_picture {
+            margin: 50px auto;
+            display: block;
+            height: 258px;
+        }
+
+        .input_box {
+            width: 400px;
+            margin: auto;
+            font-size: var(--font-regular);
+        }
+
+        .name_bag {
+            display: flex;
+            margin: 40px auto;
+        }
+
+        .name_bag1 {
+            width: 60px;
+        }
+
+        .name_line {
+            width: 300px;
+            color: var(--color-typing);
+            background-color: var(--color-background);
+            font-weight: lighter;
+            font-size: 30px;
+            margin-left: 30px;
+        }
+
+        #lastname {
+            height: 30px;
+            vertical-align: middle;
+            border: 0px;
+
+        }
+
+        .name_word {
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            color:var(--color-black);
+            font-size: var(--font-regular);
+        }
+
+        .check_button {
+            width: 50px;
+            height: 40px;
+            background-color: var(--color-button);
+            color: var(--color-black);
+            font-weight: bold;
+            border: 0px;
+            border-radius: 15px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .help_button {
+            width: 100px;
+            height: 40px;
+            background-color: var(--color-help);
+            color: var(--color-black);
+            font-weight: bold;
+            border: 0px;
+            border-radius: 15px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .check_button:hover {
+            transform: scale(1.1);
+        }
+
+        .help_button:hover {
+            transform: scale(1.1);
+        }
     </style>
     <script>
         function go_home() {
@@ -42,22 +137,37 @@
             get_lastname = $('#lastname').val();
             $('#get_lastname').text(get_lastname)
         }
+
+        function help(){
+            url = '{{template_url}}'
+            $("#main_picture").attr("src",url)
+        }
     </script>
 </head>
 
 <body>
     <header>
-        <img src="static\logo.png" alt="" onclick="go_home()">
+        <a href="#" onclick="go_home()"><img class="logo" src="static\logo1.png" alt=""></a>
     </header>
     <div>
-        <img src="static\big-icon.png" alt="">
+        <img id="main_picture" src="static\big-icon.png" alt="">
     </div>
     <main>
+        <div class="input_box">
+            <h4 class="name_bag">
+                <div class="name_bag1">이름</div>
+                <div id="firstname" class="name_line">{{template_first_name}}</div>
+            </h4>
+            <h4 class="name_bag">
+                <div class="name_bag1">성</div>
+                <div><input id="lastname" class="name_line" type="text" oninput="typing()"></div>
+            </h4>
+        </div>
         <div>
-            <p><label>이름 <span id="firstname">{{template_first_name}}</span></label></p>
-            <p><label for="lastname">성 </label><input id="lastname" type="text" oninput="typing()"></p>
-            <p>내 동료의 이름은 <span id="get_lastname"></span>{{template_first_name}}입니다. <button
-                    onclick="login()">확인</button></p>
+            <div class="name_word">내 동료의 이름은 <span id="get_lastname"></span>{{template_first_name}}입니다.
+                <button class="check_button" onclick="login()">확인</button>
+                <button class="help_button" onclick="help()">모르겠어요!</button>
+            </div>
         </div>
     </main>
 </body>

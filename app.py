@@ -11,19 +11,14 @@ db = client.dbmini
 
 SECRET_KEY = 'SPARTA'
 
-ran_num = random.randrange(1,3)
-print(ran_num)
-student_data = {
-    1: {"first_name": "인식", "last_name": "길"},
-    2: {"first_name": "중선", "last_name": "윤"}
-}
-
-
 @app.route('/')
 def index():
+    ran_num = random.randrange(1,26)
+    member = db.user.find_one({'num':ran_num})
     return render_template("index.html",
-        template_first_name = student_data[ran_num]["first_name"],
-        template_last_name = student_data[ran_num]["last_name"])
+        template_first_name = member["firstname"],
+        template_last_name = member["lastname"],
+        template_url = member["url"])
 
 @app.route('/api/login', methods=['POST'])
 def api_login():
