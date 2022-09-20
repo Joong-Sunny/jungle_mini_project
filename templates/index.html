@@ -8,13 +8,18 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" 
-        integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+        integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
 
     </style>
     <script>
+        function go_home() {
+            window.location.href = "/"
+        }
+
         function login() {
             firstname = '{{template_first_name}}'
             $.ajax({
@@ -32,12 +37,17 @@
                 }
             })
         }
+
+        function typing() {
+            get_lastname = $('#lastname').val();
+            $('#get_lastname').text(get_lastname)
+        }
     </script>
 </head>
 
 <body>
     <header>
-        <img src="static\logo.png" alt="">
+        <img src="static\logo.png" alt="" onclick="go_home()">
     </header>
     <div>
         <img src="static\big-icon.png" alt="">
@@ -45,8 +55,9 @@
     <main>
         <div>
             <p><label>이름 <span id="firstname">{{template_first_name}}</span></label></p>
-            <p><label for="lastname">성 </label><input id="lastname" type="text"></p>
-            <p>내 동료의 이름은 {{template_first_name}}입니다. <button onclick="login()">확인</button></p>
+            <p><label for="lastname">성 </label><input id="lastname" type="text" oninput="typing()"></p>
+            <p>내 동료의 이름은 <span id="get_lastname"></span>{{template_first_name}}입니다. <button
+                    onclick="login()">확인</button></p>
         </div>
     </main>
 </body>
