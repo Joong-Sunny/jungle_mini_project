@@ -127,6 +127,32 @@
 
         }
 
+        .pin {
+            position: absolute;
+            z-index: 2;
+            visibility: hidden;
+        }
+
+        .pin1 {
+            top: 275px;
+            left: 365px;
+        }
+
+        .pin2 {
+            top: 95px;
+            left: 275px;
+        }
+
+        .pin3 {
+            top: 60px;
+            left: 380px;
+        }
+
+        .pin4 {
+            top: 64px;
+            left: 504px;
+        }
+
         .people {
             position: absolute;
             top: 100px;
@@ -203,13 +229,6 @@
         .aside h2 {
             margin-left: 10px;
         }
-
-
-
-        /* test */
-        /* .people-row1 .bg1 {
-            visibility: hidden;
-        } */
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -293,16 +312,28 @@
         </header>
         <main>
             <div class="map">
+                <div class="pin1 pin">
+                    <img src="static/pin.png" alt="" width="30px" height="40px">
+                </div>
+                <div class="pin2 pin">
+                    <img src="static/pin.png" alt="" width="30px" height="40px">
+                </div>
+                <div class="pin3 pin">
+                    <img src="static/pin.png" alt="" width="30px" height="40x">
+                </div>
+                <div class="pin4 pin">
+                    <img src="static/pin.png" alt="" width="30px" height="40px">
+                </div>
 
                 <div class="people">
                     <div class="people-row11 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
@@ -310,7 +341,7 @@
                     <div class="people-row10 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
@@ -320,39 +351,39 @@
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row9 people-row">
-                        <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row8 people-row">
-                        <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row7 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row6 people-row">
@@ -361,35 +392,35 @@
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row5 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row4 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row3 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
@@ -399,33 +430,33 @@
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row2 people-row">
                         <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-sy.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                     <div class="people-row1 people-row">
-                        <img src="static/people-bg.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg1 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg2 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg3 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg4 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg5 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg6 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-jw.png" class="bg7 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg8 smilepeople" alt="" width="30px" height="30px">
                         <img src="static/people-bg.png" class="bg9 smilepeople" alt="" width="30px" height="30px">
-                        <img src="static/people-bg.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
+                        <img src="static/people-bk.png" class="bg10 smilepeople" alt="" width="30px" height="30px">
                     </div>
                 </div>
 
@@ -489,28 +520,54 @@
 
     showRoute(route_dunkin, true)
 
+
     function showRoute(route_store, init = false) {
 
         if (init == false) {
             for (let i = 1; i < 12; i++) {
-                console.log('hi2')
                 for (let j = 1; j < 11; j++) {
                     $(`.people-row${i} .bg${j}`).css('visibility', 'hidden');
-                    console.log(`.people-row${i} .bg${j} has removed`)
                 }
             }
         }
 
-        let bumgyus = route_store
+        let bumgyus = route_store;
         let delay = 0;
+
         for (let i = 0; i < bumgyus.length; i++) {
             //time interval set
-            delay += 200;
-            setTimeout(async () => {
+            delay += 25;
+            var animationID = setTimeout(async () => {
                 let x = bumgyus[i][0];
                 let y = bumgyus[i][1];
                 $(`.people-row${x} .bg${y}`).css('visibility', 'visible');
             }, delay);
+        }
+
+        // show PIN
+        if (route_store == route_gogo) {
+            $('.pin1').css('visibility', 'visible');
+            $('.pin2').css('visibility', 'hidden');
+            $('.pin3').css('visibility', 'hidden');
+            $('.pin4').css('visibility', 'hidden');
+        }
+        else if (route_store == route_daiso) {
+            $('.pin1').css('visibility', 'hidden');
+            $('.pin2').css('visibility', 'visible');
+            $('.pin3').css('visibility', 'hidden');
+            $('.pin4').css('visibility', 'hidden');
+
+        } else if (route_store == route_oliveyoung) {
+            $('.pin1').css('visibility', 'hidden');
+            $('.pin2').css('visibility', 'hidden');
+            $('.pin3').css('visibility', 'visible');
+            $('.pin4').css('visibility', 'hidden');
+
+        } else if (route_store == route_dunkin) {
+            $('.pin1').css('visibility', 'hidden');
+            $('.pin2').css('visibility', 'hidden');
+            $('.pin3').css('visibility', 'hidden');
+            $('.pin4').css('visibility', 'visible');
         }
     }
 
