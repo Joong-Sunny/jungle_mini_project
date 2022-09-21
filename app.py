@@ -40,14 +40,31 @@ def api_login():
     else:
         return jsonify({'result':'fail', 'msg':'아이디/비밀번호가 일치하지 않습니다.'})
 
+@app.route('/api/logout')
+def api_logout():
+    token_receive = request.cookies.get('mytoken')
+    blacktoken = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    blacklist = {"blacktoken":blacktoken}
+    db.black.insert_one(blacklist)
+    return redirect(url_for("index"))
+
+
 @app.route('/main')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
         print(token_receive)
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.user.find_one({"id": payload['id']})
-        return render_template("main.html")
+        unknown_token = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        print(unknown_token)
+        user_info = db.user.find_one({"firstname": unknown_token['id']})
+        print(user_info)
+        blacklist = db.black.find_one({"blacktoken":unknown_token})
+        print(blacklist)
+        if blacklist is None:
+            return render_template("main.html")
+        else:
+            return redirect(url_for("index"))
+        
     except jwt.ExpiredSignatureError:
         return redirect(url_for("index", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:

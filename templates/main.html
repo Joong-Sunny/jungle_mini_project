@@ -117,7 +117,7 @@
         }
 
         #comments_table {
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
             height: 350px;
         }
@@ -229,6 +229,10 @@
         .aside h2 {
             margin-left: 10px;
         }
+
+        .comment-box p {
+            margin: 0;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js"
@@ -237,8 +241,9 @@
         integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        function go_home() {
-            window.location.href = "/"
+        function logout() {
+
+            window.location = "/api/logout"
         }
         store = "고고짬뽕"
         RemainTime = 300;
@@ -303,10 +308,11 @@
     <div class="wrapper">
         <header>
             <div class="logo-jungle">
-                <img src="static\logo1.png" alt="" onclick="go_home()">
+                <img src="static\logo1.png" alt="" onclick="logout()">
             </div>
             <div class="welcome">
-                <p>로그인 남은시간 <span id="login_time"></span>초 <inner>정글5기 a반 환영합니다<inner>
+                <p>
+                    <inner>정글5기 a반 환영합니다</inner>로그인 남은시간 <span id="login_time"></span>초
                 </p>
             </div>
         </header>
