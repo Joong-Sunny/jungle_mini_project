@@ -221,18 +221,19 @@
         function go_home() {
             window.location.href = "/"
         }
-
+        store = "고고짬뽕"
         RemainTime = 300;
 
         $(document).ready(function init() {
             tid = setInterval('msg_time()', 1000);
-            store = "고고짬뽕"
             load_text(store)
         });
 
-        function select_text() {
-            store = "다이소"
+        function select_text(store) {
+            $('#comments_table').empty()
+            $('#store_T').text(`${store}`)
             load_text(store)
+            initComments()
         }
 
         function load_text(store) {
@@ -429,16 +430,20 @@
                 </div>
 
                 <div class="stores">
-                    <div class="stores-gogo stores-list" onclick="showRoute(route_gogo)">
+                    <div class="stores-gogo stores-list " id="route_gogo"
+                        onclick="showRoute(route_gogo);select_text('고고짬뽕')">
                         고고짬뽕
                     </div>
-                    <div class="stores-daiso stores-list" onclick="showRoute(route_daiso)">
+                    <div class="stores-daiso stores-list " id="route_daiso"
+                        onclick="showRoute(route_daiso);select_text('다이소')">
                         다이소
                     </div>
-                    <div class=" stores-oliveyoung stores-list" onclick="showRoute(route_oliveyoung)">
+                    <div class=" stores-oliveyoung stores-list " id="route_oliveyoung"
+                        onclick="showRoute(route_oliveyoung);select_text('올리브영')">
                         <div>올리브영</div>
                     </div>
-                    <div class=" stores-dunkin stores-list" onclick="showRoute(route_dunkin)">
+                    <div class=" stores-dunkin stores-list " id="route_dunkin"
+                        onclick="showRoute(route_dunkin);select_text('던킨')">
                         <div>던킨</div>
                     </div>
 
@@ -447,7 +452,7 @@
                 <img src=" static\map2.png" class="map-img">
             </div>
 
-            <div class="aside">
+            <div id="rightside" class="aside">
                 <div>
                     <h2 id="store_T">고고짬뽕</h2>
                 </div>
@@ -517,6 +522,7 @@
 
     function submitComments() {
         let comment = $('input').val()
+        let store_R = $('#store_T').text()
         if (comment == "") {
             alert('내용을 입력해 주세요!');
             return
@@ -524,11 +530,11 @@
         $.ajax({
             type: "POST",
             url: "/api/comments",
-            data: { comment_give: comment, store_name: '고고짬뽕' },
+            data: { comment_give: comment, store_name: store_R },
             success: function (response) {
                 if (response['result'] == 'success') {
                     alert(response['msg']);
-                    window.location.reload();
+                    select_text(store_R)
                 }
             }
         })
