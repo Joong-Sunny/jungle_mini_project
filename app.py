@@ -4,6 +4,7 @@ import random
 import hashlib
 import datetime
 import jwt
+import json
 
 app = Flask(__name__)
 client = MongoClient('localhost', 27017)
@@ -53,12 +54,26 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
 
-@app.route('/api/load', methods=['POST'])
+#중선 진자로
+# @app.route('/api/load', methods=['POST'])
+# def load():
+#     store_receive = request.form['store_give']
+#     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
+#     print(result)
+#     return render_template("main.html",
+#     # template_result = 'success',
+#     result = json.dumps(result))
+#     #return jsonify({'result': 'success', 'comments': result})
+@app.route('/main')
 def load():
     store_receive = request.form['store_give']
     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
     print(result)
-    return jsonify({'result': 'success', 'comments': result})
+    return render_template("main.html",
+    # template_result = 'success',
+    result  = result)
+    #return jsonify({'result': 'success', 'comments': result})
+
 
 
 

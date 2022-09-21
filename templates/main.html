@@ -254,15 +254,43 @@
             load_text(store)
             initComments()
         }
+        //before jinja2 
+        // function load_text(store) {
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/api/load",
+        //         data: { "store_give": store },
+        //         success: function (response) {
+        //             if (response['result'] == 'success') {
+        //                 comments = response['comments']
+        //                 for (let i = 0; i < comments.length; i++) {
+        //                     num = comments[i]['num']
+        //                     comment = comments[i]['comment']
+        //                     import_text(store, num, comment)
+        //                 }
+        //             } else {
+        //                 alert('불러오기에 실패했습니다.')
+        //             }
+        //         }
+        //     })
+        // }
+        //after jinja2
+
 
         function load_text(store) {
             $.ajax({
                 type: "POST",
-                url: "/api/load",
+                url: "/main",
                 data: { "store_give": store },
                 success: function (response) {
-                    if (response['result'] == 'success') {
-                        comments = response['comments']
+                    console.log('hi');
+                    var abc = '{{ result }}'
+                    console.log(abc);
+                    console.log('hi');
+
+
+                    if ('{{template_result}}' == 'success') {
+                        comments = '{{template_comments}}'
                         for (let i = 0; i < comments.length; i++) {
                             num = comments[i]['num']
                             comment = comments[i]['comment']
@@ -306,7 +334,7 @@
                 <img src="static\logo1.png" alt="" onclick="go_home()">
             </div>
             <div class="welcome">
-                <p>로그인 남은시간 <span id="login_time"></span>초 <inner>정글5기 a반 환영합니다<inner>
+                <p>로그인 남은시간 <span id="login_time"></span>초 <inner>정글5기 a반 환영합니다 {{template_result}}<inner>
                 </p>
             </div>
         </header>
