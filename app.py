@@ -36,7 +36,7 @@ def api_login():
     if result is not None:
         payload = {
             'id': first_name_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=300)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -59,12 +59,22 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
 
+@app.route('/api/load', methods=['POST'])
+def load():
+    store_receive = request.form['store_give']
+    result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
+    print(result)
+    return jsonify({'result': 'success', 'comments': result})
+
+
+
 #save comments to DB
 @app.route('/api/comments', methods=['POST'])
 def submitComment():
     comment_receive = request.form['comment_give']
     store_receive = request.form['store_name']
-    comment_push = {'store_name': store_receive, 'comment':comment_receive}
+    num = db.comments.estimated_document_count()
+    comment_push = {'store_name': store_receive, 'comment':comment_receive, 'num':num+1}
     db.comments.insert_one(comment_push)
     return jsonify({'result': 'success', 'msg': str(comment_push) + "db에 저장되었습니다!"})
 
