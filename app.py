@@ -4,6 +4,7 @@ import random
 import hashlib
 import datetime
 import jwt
+import json
 
 app = Flask(__name__)
 client = MongoClient('localhost', 27017)
@@ -19,6 +20,7 @@ def index():
     print('member')
     return render_template("index.html",
         template_first_name = member["firstname"],
+        template_last_name = member["lastname"],
         template_url = member["url"])
 
 @app.route('/api/login', methods=['POST'])
@@ -29,12 +31,19 @@ def api_login():
     pw_hash = hashlib.sha256(last_name_receive.encode('utf-8')).hexdigest()
     result = db.user.find_one({'firstname':first_name_receive, 'lastname':pw_hash})
 
+    print(first_name_receive)
+    print(last_name_receive)
+    print(pw_hash)
+    print(result)
+
     if result is not None:
         payload = {
             'id': first_name_receive,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=300)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
+        print(token)
         
         return jsonify({'result':'success', 'token':token})
     else:
@@ -70,12 +79,26 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
 
-@app.route('/api/load', methods=['POST'])
+#중선 진자로
+# @app.route('/api/load', methods=['POST'])
+# def load():
+#     store_receive = request.form['store_give']
+#     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
+#     print(result)
+#     return render_template("main.html",
+#     # template_result = 'success',
+#     result = json.dumps(result))
+#     #return jsonify({'result': 'success', 'comments': result})
+@app.route('/main')
 def load():
     store_receive = request.form['store_give']
     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
     print(result)
-    return jsonify({'result': 'success', 'comments': result})
+    return render_template("main.html",
+    # template_result = 'success',
+    result  = result)
+    #return jsonify({'result': 'success', 'comments': result})
+
 
 
 
