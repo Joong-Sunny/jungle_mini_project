@@ -94,6 +94,5 @@ def submitComment():
     comment_push = {'store_name': store_receive, 'comment':comment_receive, 'num':num+1}
     db.comments.insert_one(comment_push)
     return jsonify({'result': 'success', 'msg': str(comment_push) + "db에 저장되었습니다!"})
-
 if __name__ == '__main__':
     app.run(debug=True)
