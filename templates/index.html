@@ -21,7 +21,7 @@
             --color-background: #ffebee;
             --color-typing: #616161;
             --color-button: #4caf50;
-            --color-help:#ff7043;
+            --color-help: #ff7043;
             --color-black: #212121;
         }
 
@@ -74,7 +74,7 @@
             width: 600px;
             margin: 0 auto;
             text-align: center;
-            color:var(--color-black);
+            color: var(--color-black);
             font-size: var(--font-regular);
         }
 
@@ -138,10 +138,17 @@
             $('#get_lastname').text(get_lastname)
         }
 
-        function help(){
+        function help() {
             url = '{{template_url}}'
-            $("#main_picture").attr("src",url)
+            $("#main_picture").attr("src", url)
         }
+
+        function enterkey() {
+            if (window.event.keyCode == 13) {
+                login();
+            }
+        }
+
     </script>
 </head>
 
@@ -160,7 +167,7 @@
             </h4>
             <h4 class="name_bag">
                 <div class="name_bag1">성</div>
-                <div><input id="lastname" class="name_line" type="text" oninput="typing()"></div>
+                <div><input id="lastname" class="name_line" type="text" onkeyup="enterkey()" oninput="typing()"></div>
             </h4>
         </div>
         <div>

@@ -15,6 +15,8 @@ SECRET_KEY = 'SPARTA'
 def index():
     ran_num = random.randrange(1,26)
     member = db.user.find_one({'num':ran_num})
+    print('hi')
+    print('member')
     return render_template("index.html",
         template_first_name = member["firstname"],
         template_last_name = member["lastname"],
@@ -36,7 +38,7 @@ def api_login():
     if result is not None:
         payload = {
             'id': first_name_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=200)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
