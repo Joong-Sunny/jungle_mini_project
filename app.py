@@ -4,10 +4,9 @@ import random
 import hashlib
 import datetime
 import jwt
-import json
 
 app = Flask(__name__)
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://test:test@3.36.115.138',27017)
 db = client.dbmini
 
 SECRET_KEY = 'SPARTA'
@@ -20,7 +19,6 @@ def index():
     print('member')
     return render_template("index.html",
         template_first_name = member["firstname"],
-        template_last_name = member["lastname"],
         template_url = member["url"])
 
 @app.route('/api/login', methods=['POST'])
@@ -30,7 +28,7 @@ def api_login():
 
     pw_hash = hashlib.sha256(last_name_receive.encode('utf-8')).hexdigest()
     result = db.user.find_one({'firstname':first_name_receive, 'lastname':pw_hash})
-
+    
     print(first_name_receive)
     print(last_name_receive)
     print(pw_hash)
@@ -43,8 +41,6 @@ def api_login():
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
-        print(token)
-        
         return jsonify({'result':'success', 'token':token})
     else:
         return jsonify({'result':'fail', 'msg':'아이디/비밀번호가 일치하지 않습니다.'})
@@ -62,13 +58,9 @@ def api_logout():
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
-        print(token_receive)
         unknown_token = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(unknown_token)
         user_info = db.user.find_one({"firstname": unknown_token['id']})
-        print(user_info)
         blacklist = db.black.find_one({"blacktoken":unknown_token})
-        print(blacklist)
         if blacklist is None:
             return render_template("main.html")
         else:
@@ -79,26 +71,12 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="로그인 정보가 존재하지 않습니다."))
 
-#중선 진자로
-# @app.route('/api/load', methods=['POST'])
-# def load():
-#     store_receive = request.form['store_give']
-#     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
-#     print(result)
-#     return render_template("main.html",
-#     # template_result = 'success',
-#     result = json.dumps(result))
-#     #return jsonify({'result': 'success', 'comments': result})
-@app.route('/main')
+@app.route('/api/load', methods=['POST'])
 def load():
     store_receive = request.form['store_give']
     result = list(db.comments.find({'store_name':store_receive}, {'_id':0, 'store_name':0}))
     print(result)
-    return render_template("main.html",
-    # template_result = 'success',
-    result  = result)
-    #return jsonify({'result': 'success', 'comments': result})
-
+    return jsonify({'result':'success', 'comments':result})
 
 
 
@@ -111,5 +89,6 @@ def submitComment():
     comment_push = {'store_name': store_receive, 'comment':comment_receive, 'num':num+1}
     db.comments.insert_one(comment_push)
     return jsonify({'result': 'success', 'msg': str(comment_push) + "db에 저장되었습니다!"})
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('0.0.0.0', port=5000)(debug=True)

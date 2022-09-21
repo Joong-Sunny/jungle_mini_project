@@ -259,43 +259,15 @@
             load_text(store)
             initComments()
         }
-        //before jinja2 
-        // function load_text(store) {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "/api/load",
-        //         data: { "store_give": store },
-        //         success: function (response) {
-        //             if (response['result'] == 'success') {
-        //                 comments = response['comments']
-        //                 for (let i = 0; i < comments.length; i++) {
-        //                     num = comments[i]['num']
-        //                     comment = comments[i]['comment']
-        //                     import_text(store, num, comment)
-        //                 }
-        //             } else {
-        //                 alert('불러오기에 실패했습니다.')
-        //             }
-        //         }
-        //     })
-        // }
-        //after jinja2
-
 
         function load_text(store) {
             $.ajax({
                 type: "POST",
-                url: "/main",
+                url: "/api/load",
                 data: { "store_give": store },
                 success: function (response) {
-                    console.log('hi');
-                    var abc = '{{ result }}'
-                    console.log(abc);
-                    console.log('hi');
-
-
-                    if ('{{template_result}}' == 'success') {
-                        comments = '{{template_comments}}'
+                    if (response['result'] == 'success') {
+                        comments = response['comments']
                         for (let i = 0; i < comments.length; i++) {
                             num = comments[i]['num']
                             comment = comments[i]['comment']
@@ -526,7 +498,7 @@
                 </div>
 
                 <div class="comment-input-box">
-                    <input id="input_box" type="text">
+                    <input id="input_box" onkeyup="enterkey()" type="text">
                     <div class="input_box_line">
                         <button onclick="initComments()" class="table_button"> 초기화 </button>
                         <button onclick="submitComments()" class="table_button"> 저장 </button>
@@ -624,7 +596,7 @@
             data: { comment_give: comment, store_name: store_R },
             success: function (response) {
                 if (response['result'] == 'success') {
-                    alert(response['msg']);
+                    alert('댓글작성 완료!!');
                     select_text(store_R)
                 }
             }
