@@ -74,7 +74,7 @@
         }
 
         .aside {
-            width: 205px;
+            width: 218px;
             height: 568px;
             position: relative;
             top: 10px;
@@ -107,13 +107,24 @@
         .comment-input-box button {
             float: right;
             margin: auto;
-            margin-left: 132px;
+            margin-left: 10px;
             padding: 8px;
             background-color: #006EF9;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        #comments_table {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 350px;
+        }
+
+        .input_box_line {
+            display: inline-flex;
+
         }
 
         .people {
@@ -193,6 +204,8 @@
             margin-left: 10px;
         }
 
+
+
         /* test */
         /* .people-row1 .bg1 {
             visibility: hidden;
@@ -213,7 +226,47 @@
 
         $(document).ready(function init() {
             tid = setInterval('msg_time()', 1000);
+            store = "고고짬뽕"
+            load_text(store)
         });
+
+        function select_text() {
+            store = "다이소"
+            load_text(store)
+        }
+
+        function load_text(store) {
+            $.ajax({
+                type: "POST",
+                url: "/api/load",
+                data: { "store_give": store },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        comments = response['comments']
+                        for (let i = 0; i < comments.length; i++) {
+                            num = comments[i]['num']
+                            comment = comments[i]['comment']
+                            import_text(store, num, comment)
+                        }
+                    } else {
+                        alert('불러오기에 실패했습니다.')
+                    }
+                }
+            })
+        }
+
+        function import_text(store, num, comment) {
+            $("#store_T").text(store);
+            let temp_html = `
+            <ul class="li">
+                        <div class="unknown-name">익명${num}</div>
+                        <div class="comment-box">
+                            <p>${comment}</p>
+                        </div>
+                    </ul>
+            `;
+            $("#comments_table").append(temp_html)
+        }
 
         function msg_time() {
             $('#login_time').text(RemainTime);
@@ -396,36 +449,24 @@
 
             <div class="aside">
                 <div>
-                    <h2>고고짬뽕</h2>
+                    <h2 id="store_T">고고짬뽕</h2>
                 </div>
-                <div>
-                    <ul class="li">
-                        <div class="unknown-name">익명1</div>
-                        <div class="comment-box">
-                            <p>너무짜요...</p>
-                        </div>
-                    </ul>
-                    <ul class="li">
-                        <div class="unknown-name">익명2</div>
-                        <div class="comment-box">
-                            <p>차돌박이 짬뽕 강력추천 합니다~~</p>
-                        </div>
-                    </ul>
-                    <ul class="li">
-                        <div class="unknown-name">익명3</div>
-                        <div class="comment-box">
-                            <p>한 5분 걸어가면나오는듯?</p>
-                        </div>
-                    </ul>
-                </div>
-                <div class="comment-input-box">
-                    <input type="text" onkeyup="enterkey()">
-                    <button onclick="submitComments()"> 저장 </button>
+                <div id="comments_table">
+
                 </div>
 
+                <div class="comment-input-box">
+                    <input id="input_box" type="text">
+                    <div class="input_box_line">
+                        <button onclick="initComments()" class="table_button"> 초기화 </button>
+                        <button onclick="submitComments()" class="table_button"> 저장 </button>
+                    </div>
+                </div>
             </div>
-            <!-- <img src="static\pin.png" alt="" width="50px" height="50px" id="pin"> -->
-        </main>
+
+    </div>
+    <!-- <img src="static\pin.png" alt="" width="50px" height="50px" id="pin"> -->
+    </main>
     </div>
 </body>
 
@@ -469,8 +510,17 @@
     }
 
 
+    function initComments() {
+        let input_box = document.getElementById('input_box');
+        input_box.value = null;
+    }
+
     function submitComments() {
         let comment = $('input').val()
+        if (comment == "") {
+            alert('내용을 입력해 주세요!');
+            return
+        }
         $.ajax({
             type: "POST",
             url: "/api/comments",
@@ -478,6 +528,7 @@
             success: function (response) {
                 if (response['result'] == 'success') {
                     alert(response['msg']);
+                    window.location.reload();
                 }
             }
         })
