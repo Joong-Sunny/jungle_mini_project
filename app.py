@@ -19,7 +19,6 @@ def index():
     print('member')
     return render_template("index.html",
         template_first_name = member["firstname"],
-        template_last_name = member["lastname"],
         template_url = member["url"])
 
 @app.route('/api/login', methods=['POST'])
@@ -30,19 +29,12 @@ def api_login():
     pw_hash = hashlib.sha256(last_name_receive.encode('utf-8')).hexdigest()
     result = db.user.find_one({'firstname':first_name_receive, 'lastname':pw_hash})
 
-    print(first_name_receive)
-    print(last_name_receive)
-    print(pw_hash)
-    print(result)
-
     if result is not None:
         payload = {
             'id': first_name_receive,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=300)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-
-        print(token)
         
         return jsonify({'result':'success', 'token':token})
     else:
