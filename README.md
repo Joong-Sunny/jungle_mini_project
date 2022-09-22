@@ -2,28 +2,28 @@
 
 GilnDev &amp; Sunny
 ---
-##프로젝트 설명
+## 프로젝트 설명
 
-###1.로그인 기능
+### 1.로그인 기능
 ![jungle_mini_login](https://user-images.githubusercontent.com/63194662/191638442-4097c144-6d03-4976-884b-c15abc0206ce.gif)
 
 - JWT인증 및 hashlib 암호화
 - 세션만료 및 로그아웃 버튼 구현
 
-###2.메인 페이지
+### 2.메인 페이지
 ![jungle_mini](https://user-images.githubusercontent.com/63194662/191637959-ef49d906-7e65-4607-b04e-21e7022bfc30.gif)
 
 - 바닐라 HTML, CSS, JS 로 구현
 - 댓글 등록, 저장, 스크롤, DOM 애니메이션 조작
 - 낮은 DOM구조 변경(layout 및 paint 변경 없음)
 
-###3.사용 스택
+### 3.사용 스택
 flask, hashlib, jinja2, jwt, mongoDB, ajax, jqeury
 
-###4. 프로젝트 배경
+### 4. 프로젝트 배경
 SW정글 0주차 과제: 3일만에 팀원과 <기획-제작-배포-발표>까지의 과정을 통해 협업 경험함
 Contributor:
-![GilnDev](https://github.com/GilnDev) & ![Joong-Sunny](https://github.com/Joong-Sunny/)
+[GilnDev](https://github.com/GilnDev) & [Joong-Sunny](https://github.com/Joong-Sunny/)
 
 ###5.예상 효과
 - 정글5기a반 친구(동료)들의 이름을 모르면 로그인을 할 수 없다 
